@@ -22,6 +22,8 @@ public class WebFormPage extends BasePage{
     public By TextExit1 = By.xpath("//h1[text()='Form submitted']");
     public By TextExit2 = By.xpath("//p[text() = 'Received!']");
 
+    public By TextMain = By.xpath("//h1[text() = 'Web form']");
+
     public By drop2 = By.id("my-select");
     public By dropBox = By.xpath("//input[@name = \"my-datalist\"]");
     public By droppunkt2 = By.xpath("//option[@value= 'Seattle']");
@@ -113,6 +115,9 @@ public class WebFormPage extends BasePage{
     public void ClickBtn(){
         driver.findElement(BtnSubmit).click();
     }
-
+    public boolean isPageOpenMain(){
+        boolean textMaim = driver.findElement(TextMain).isDisplayed();
+        return textMaim;
+    }
 }
 

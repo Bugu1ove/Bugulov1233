@@ -72,7 +72,13 @@ public class WebFormPageTest{
     public void step_5() {
         webFormPage.ClickBtn();
         Assert.assertTrue(webFormPage.isPageOpen());
+
+    }
+
+    @Test
+    public void step_6() {
         webFormPage.openURL(START_URL);
+        Assert.assertTrue(webFormPage.isPageOpenMain());
     }
 
     @AfterClass
