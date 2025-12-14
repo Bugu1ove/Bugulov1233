@@ -3,6 +3,9 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import static browser.Config.START_URL;
 
 public class WebFormPage extends BasePage{
     public WebFormPage(WebDriver driver) {super(driver);}
@@ -14,7 +17,13 @@ public class WebFormPage extends BasePage{
     public By drop1 = By.xpath("//input[@placeholder='Type to search...']");
     public By droppunkt1 = By.xpath("//option[@value= '2']");
 
+    public By BtnSubmit = By.xpath("//button[@type = 'submit']");
+
+    public By TextExit1 = By.xpath("//h1[text()='Form submitted']");
+    public By TextExit2 = By.xpath("//p[text() = 'Received!']");
+
     public By drop2 = By.id("my-select");
+    public By dropBox = By.xpath("//input[@name = \"my-datalist\"]");
     public By droppunkt2 = By.xpath("//option[@value= 'Seattle']");
 
 
@@ -44,7 +53,7 @@ public class WebFormPage extends BasePage{
         return driver.findElement(tboxMy).getAttribute("value");
     }
     public String getOutputAria() {
-        return driver.findElement(textaria).getText();
+        return driver.findElement(textaria).getAttribute("value");
     }
     public String getOutputPassword() {
         return driver.findElement(passwordBoxName).getAttribute("value");
@@ -78,10 +87,7 @@ public class WebFormPage extends BasePage{
         By locator = By.xpath(String.format(radiobut,radioButtonName));
         return driver.findElement(locator).isSelected();
     }
-    public boolean radioButtonIsEnabled(String radioButtonName){
-        By locator = By.xpath(String.format(radiobut, radioButtonName));
-        return driver.findElement(locator).isEnabled();
-    }
+
 
     public void openDropdown() {
         driver.findElement(drop1).click();
@@ -93,12 +99,20 @@ public class WebFormPage extends BasePage{
         System.out.println("Элемент списка выбран");
     }
 
-    public void setAllFieldAndSubmit1(String full){
-        setRDropName(full);
+    public void ClickDropBox(String drobBoxText){
+        driver.findElement(dropBox).sendKeys(drobBoxText);
+    }
+    public void setDropBoxText(String drobBoxText){
+        ClickDropBox(drobBoxText);
+    }
+    public boolean isPageOpen(){
+        boolean a = driver.findElement(TextExit1).isDisplayed();
+        boolean b = driver.findElement(TextExit2).isDisplayed();
+        return a && b;
+    }
+    public void ClickBtn(){
+        driver.findElement(BtnSubmit).click();
+    }
 
-    }
-    public void setRDropName(String full){
-        driver.findElement(drop2).sendKeys(full);
-    }
 }
 

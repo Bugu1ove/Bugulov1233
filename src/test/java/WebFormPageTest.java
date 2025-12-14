@@ -1,5 +1,7 @@
 import browser.Browser;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -20,6 +22,8 @@ public class WebFormPageTest{
     private String Tboxaria = "Bugulov Aleksandr Sergeevich";
     private String PboxPassword = "1234567";
     private String Droptest = "Seattle";
+    private String TextProverk = "Form submitted\n" +
+            "Received!";
 
     @BeforeClass
     public void beforeClass() {
@@ -35,6 +39,9 @@ public class WebFormPageTest{
         webFormPage.getOutputName();
         webFormPage.getOutputAria();
         webFormPage.getOutputPassword();
+        Assert.assertEquals(webFormPage.getOutputName(), TboxName);
+        Assert.assertEquals(webFormPage.getOutputAria(), Tboxaria);
+        Assert.assertEquals(webFormPage.getOutputPassword(), PboxPassword);
 
 
     }
@@ -59,8 +66,15 @@ public class WebFormPageTest{
     public void step_4() {
         webFormPage.openDropdown();
         webFormPage.setRoleDrop();
+        webFormPage.setDropBoxText(Droptest);
     }
 
+    @Test
+    public void step_5() {
+        webFormPage.ClickBtn();
+        Assert.assertTrue(webFormPage.isPageOpen());
+        webFormPage.openURL(START_URL);
+    }
 
     @AfterClass
     public void afterClass() {
