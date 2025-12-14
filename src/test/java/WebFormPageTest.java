@@ -22,8 +22,7 @@ public class WebFormPageTest{
     private String Tboxaria = "Bugulov Aleksandr Sergeevich";
     private String PboxPassword = "1234567";
     private String Droptest = "Seattle";
-    private String TextProverk = "Form submitted\n" +
-            "Received!";
+
 
     @BeforeClass
     public void beforeClass() {
